@@ -1,0 +1,32 @@
+﻿using Dinein_ResturantApp.Services;
+using Dinein_ResturantApp.Views;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Dinein_ResturantApp
+{
+    public partial class App : Application
+    {
+
+        public App()
+        {
+            InitializeComponent();
+
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
+        }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+    }
+}
