@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{425DB4FD-C0B7-4C8B-92BF-DB79D563F740}</ProjectGuid>
+    <ProjectGuid>{99B70D28-C10C-4815-8838-44D21C9CECC2}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dinein_ResturantApp\Dinein_ResturantApp.csproj">
-      <Project>{0E6E18C9-8990-46FD-9A91-E80D7AF2C04C}</Project>
+      <Project>{DBEC088F-F63C-4293-8152-8B1597C9C0B9}</Project>
       <Name>Dinein_ResturantApp</Name>
     </ProjectReference>
   </ItemGroup>

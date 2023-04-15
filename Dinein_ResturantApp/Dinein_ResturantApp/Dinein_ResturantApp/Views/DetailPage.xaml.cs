@@ -10,13 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Dinein_ResturantApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DeatailPage : ContentPage
+    public partial class DetailPage : ContentPage
     {
-        public DeatailPage()
+        public DetailPage()
         {
             InitializeComponent();
         }
-
-      
     }
 }

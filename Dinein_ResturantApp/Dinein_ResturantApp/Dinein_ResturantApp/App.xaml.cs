@@ -1,4 +1,4 @@
-﻿using Dinein_ResturantApp.Services;
+﻿//using Dinein_ResturantApp.Services;
 using Dinein_ResturantApp.Views;
 using System;
 using Xamarin.Forms;
@@ -13,7 +13,7 @@ namespace Dinein_ResturantApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+           // DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

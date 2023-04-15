@@ -16,10 +16,5 @@ namespace Dinein_ResturantApp.Views
         {
             InitializeComponent();
         }
-        private void Open_Detail(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new DeatailPage());
-
-        }
     }
 }

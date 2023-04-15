@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dinein_ResturantApp.ViewModels
 {
-    class DeatailViewModel
+    class DetailViewModel
     {
     }
 }

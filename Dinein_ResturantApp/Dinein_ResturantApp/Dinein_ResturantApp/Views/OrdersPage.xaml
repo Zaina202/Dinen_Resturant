@@ -2,19 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dinein_ResturantApp.Views.OrdersPage"
-              xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels">
+             xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels">
     <ContentPage.BindingContext>
         <local:OrdersViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Order Page!"
+            <Label Text="Welcome to Orders Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Style="{StaticResource LargButton}" 
-                    Margin="20,0,20,50"
-                    Text="Detail"
-                    Clicked=" Open_Detail"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
