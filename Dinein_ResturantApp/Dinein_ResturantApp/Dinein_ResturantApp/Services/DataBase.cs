@@ -64,7 +64,38 @@ namespace Dinein_ResturantApp.Services
 
 
 
+        public async Task<List<OrderItem>> GetOrderById(string userId)
+        {
+            try
+            {
+                var items = new List<OrderItem>();
+                var orderQueryResult = await _firebaseClient.Child("Order")
+                    .OrderBy("UserId")
+                    .EqualTo(userId)
+                    .OnceAsync<OrderItem>();
+                foreach (var itemSnapshot in orderQueryResult)
+                {
+                    var item = itemSnapshot.Object;
+                    items.Add(new OrderItem
+                    {
+                        MenuItemName = item.MenuItemName,
+                        MenuItemPrice = item.MenuItemPrice,
+                        OrderId = item.OrderId,
+                        Quantity = item.Quantity,
+                        TotalPrice = item.TotalPrice,
+                        UserId = item.UserId
 
+                    });
+                }
+
+                return items;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while getting the order by ID: {ex.Message}");
+                return null;
+            }
+        }
 
     }
 }
