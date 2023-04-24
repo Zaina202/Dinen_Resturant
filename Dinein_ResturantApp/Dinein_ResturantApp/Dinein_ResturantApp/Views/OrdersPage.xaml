@@ -8,9 +8,44 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Orders Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Customer Orders" HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Margin="20"/>
+            </StackLayout>
+            <ListView x:Name="ItemListView" 
+                      ItemsSource="{Binding ReservationItems}"
+                  CachingStrategy="RecycleElement"
+                  RowHeight="110" SeparatorColor="Transparent" SeparatorVisibility="Default" Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <RelativeLayout>
+                                <Frame CornerRadius="10" BackgroundColor="LightGray" Margin="5" Padding="1" >
+                                    <StackLayout  Padding="15" BackgroundColor="{StaticResource Secondry}" Orientation="Horizontal" WidthRequest="370" >
+                                        <StackLayout HeightRequest="110" WidthRequest="220">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="Profile.png"/>
+                                                <Label Text="{Binding UserName}" FontSize="Large" TextColor="black" FontAttributes="Bold" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Margin="15,0,0,0">
+                                                <Image Source="clock1" Margin="0,0,5,0"/>
+                                                <Label Text="{Binding TimePicker}" FontSize="Medium" TextColor="black" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Margin="15,0,0,0">
+                                                <Image Source="People.png" Margin="0,0,5,0"/>
+                                                <Label Text="{Binding NumberOfPeople}" FontSize="Medium" TextColor="black"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Button Style="{StaticResource SmallButton}"
+                                                HeightRequest="30"
+                                                Margin="0,32,0,32"
+                                                HorizontalOptions="EndAndExpand" Text="Open"/>
+                                    </StackLayout>
+                                </Frame>
+                            </RelativeLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
