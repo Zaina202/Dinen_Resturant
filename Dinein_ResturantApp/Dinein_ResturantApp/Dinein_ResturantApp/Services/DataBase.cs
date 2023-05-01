@@ -47,48 +47,21 @@ namespace Dinein_ResturantApp.Services
                     {
                         var user = userQueryResult.First().Object;
                         reservation.UserName = user.UserName;
-                        
-                      //  Console.WriteLine("hiiiiiii" + user.UserName);
-
                     }
-
                 }
-
                 reservationList.Add(reservation);
-
             }
-
             return reservationList;
-
         }
-
-
-
-        public async Task<List<OrderItem>> GetOrderById(string userId)
+        public async Task<List<Order>> GetOrderById(string userId)
         {
             try
-            {
-                var items = new List<OrderItem>();
-                var orderQueryResult = await _firebaseClient.Child("Order")
-                    .OrderBy("UserId")
-                    .EqualTo(userId)
-                    .OnceAsync<OrderItem>();
-                foreach (var itemSnapshot in orderQueryResult)
-                {
-                    var item = itemSnapshot.Object;
-                    items.Add(new OrderItem
-                    {
-                        MenuItemName = item.MenuItemName,
-                        MenuItemPrice = item.MenuItemPrice,
-                        OrderId = item.OrderId,
-                        Quantity = item.Quantity,
-                        TotalPrice = item.TotalPrice,
-                        UserId = item.UserId
+            {         
+                var orderQueryResult = await _firebaseClient.Child("BillOrders")                    
+                    .OnceAsync<Order>();
 
-                    });
-                }
+                return orderQueryResult.Where(el=>el.Object.UserId==userId).Select(el=>el.Object).ToList();  
 
-                return items;
             }
             catch (Exception ex)
             {
@@ -96,6 +69,6 @@ namespace Dinein_ResturantApp.Services
                 return null;
             }
         }
-
+        
     }
 }

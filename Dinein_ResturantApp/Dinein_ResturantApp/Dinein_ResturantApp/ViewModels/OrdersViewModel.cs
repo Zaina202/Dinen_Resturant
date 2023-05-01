@@ -23,13 +23,29 @@ namespace Dinein_ResturantApp.ViewModels
             }
 
         }
+        private string _userName;
 
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                if (_userName != value)
+                {
+                    _userName = value;
+                    OnPropertyChanged(nameof(UserName));
+                }
+            }
+        }
         public OrdersViewModel()
         {
             dataBase = new DataBase();
             LoadReservationItems();
         }
-
+        public OrdersViewModel(string userName)
+        {
+            UserName = userName;
+        }
         private async void LoadReservationItems()
         {
             ReservationItems = await dataBase.GetAllReservations();

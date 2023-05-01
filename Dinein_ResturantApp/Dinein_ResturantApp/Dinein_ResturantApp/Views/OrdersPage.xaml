@@ -14,6 +14,7 @@
             <ListView x:Name="ItemListView" 
                       ItemsSource="{Binding ReservationItems}"
                   CachingStrategy="RecycleElement"
+                      ItemTapped="OnItemTapped"
                   RowHeight="110" SeparatorColor="Transparent" SeparatorVisibility="Default" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
