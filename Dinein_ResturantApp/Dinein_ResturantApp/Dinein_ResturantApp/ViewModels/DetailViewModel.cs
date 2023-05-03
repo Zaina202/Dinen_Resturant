@@ -35,6 +35,20 @@ namespace Dinein_ResturantApp.ViewModels
                 }
             }
         }
+        private string _OrderTotalPrice;
+
+        public string OrderTotalPrice
+        {
+            get { return _OrderTotalPrice; }
+            set
+            {
+                if (_OrderTotalPrice != value)
+                {
+                    _OrderTotalPrice = value;
+                    OnPropertyChanged(nameof(OrderTotalPrice));
+                }
+            }
+        }
         public DetailViewModel(string userId, string userName)
         {
             _dataBase = new DataBase();
@@ -81,6 +95,14 @@ namespace Dinein_ResturantApp.ViewModels
         {
             Orders = await _dataBase.GetOrderById(userId);
             OrderItems = Orders.Select(el => el.OrderList).First();
+            decimal totalPrice = 0;
+            foreach (var item in OrderItems)
+            {
+                totalPrice += item.TotalPrice;
+            }
+
+
+            OrderTotalPrice = totalPrice.ToString("c");
 
         }
 
