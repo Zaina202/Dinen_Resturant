@@ -1,4 +1,4 @@
-﻿using Dinein_ResturantApp.Models;
+using Dinein_ResturantApp.Models;
 using Dinein_ResturantApp.Services;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,29 @@ namespace Dinein_ResturantApp.ViewModels
             }
 
         }
+        private string _userName;
 
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                if (_userName != value)
+                {
+                    _userName = value;
+                    OnPropertyChanged(nameof(UserName));
+                }
+            }
+        }
         public OrdersViewModel()
         {
             dataBase = new DataBase();
             LoadReservationItems();
         }
-
+        public OrdersViewModel(string userName)
+        {
+            UserName = userName;
+        }
         private async void LoadReservationItems()
         {
             ReservationItems = await dataBase.GetAllReservations();
