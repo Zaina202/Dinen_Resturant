@@ -57,7 +57,7 @@ namespace Dinein_ResturantApp.Services
         {
             try
             {         
-                var orderQueryResult = await _firebaseClient.Child("BillOrders")                    
+                var orderQueryResult = await _firebaseClient.Child("BillOrder")                    
                     .OnceAsync<Order>();
 
                 return orderQueryResult.Where(el=>el.Object.UserId==userId).Select(el=>el.Object).ToList();  
