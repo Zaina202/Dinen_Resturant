@@ -50,7 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Label Text="Total Price : " FontSize="Large" Margin="20" />
+            <Label Grid.Row="2" Text="{Binding OrderTotalPrice, StringFormat='Total: {0:C}'}" FontSize="Large" Margin="5,10,0,10" />
         </StackLayout>
 
     </ContentPage.Content>

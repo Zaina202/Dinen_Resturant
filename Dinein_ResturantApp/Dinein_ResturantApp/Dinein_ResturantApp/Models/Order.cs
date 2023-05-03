@@ -11,6 +11,7 @@ namespace Dinein_ResturantApp.Models
         public string UserId { get; set; }
         public List<OrderItem> OrderList { get; set;}
         public string BillOrderID { get; set; }
+        public string OrderTotalPrice{ get; set; }
 
     }
 }
