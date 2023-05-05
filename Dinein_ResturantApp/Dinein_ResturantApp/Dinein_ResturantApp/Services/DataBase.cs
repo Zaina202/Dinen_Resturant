@@ -15,7 +15,7 @@ namespace Dinein_ResturantApp.Services
         private readonly string FirebaseSecretKey = "1AO003FSpm2dGZn4321C88RKPu2T6DPnKLfBr1Dg";
 
         private FirebaseClient _firebaseClient;
-        
+
         public DataBase()
         {
             _firebaseClient = new FirebaseClient(FirebaseClientUrl, new FirebaseOptions
@@ -23,7 +23,7 @@ namespace Dinein_ResturantApp.Services
                 AuthTokenAsyncFactory = () => Task.FromResult(FirebaseSecretKey)
             });
 
-            
+
         }
 
         public async Task<List<ReservationModel>> GetAllReservations()
@@ -47,22 +47,40 @@ namespace Dinein_ResturantApp.Services
                     {
                         var user = userQueryResult.First().Object;
                         reservation.UserName = user.UserName;
-                        
-                      //  Console.WriteLine("hiiiiiii" + user.UserName);
-
                     }
-
                 }
-
                 reservationList.Add(reservation);
+            }
+            return reservationList;
+        }
+        public async Task<List<Order>> GetOrderById(string userId)
+        {
+            try
+            {
+                var orderQueryResult = await _firebaseClient.Child("BillOrder")
+                    .OnceAsync<Order>();
+
+                return orderQueryResult.Where(el => el.Object.UserId == userId).Select(el => el.Object).ToList();
 
             }
-
-            return reservationList;
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while getting the order by ID: {ex.Message}");
+                return null;
+            }
         }
 
+        public async Task DeleteOrderAsync(Order order)
+        {
+            var orderRef = _firebaseClient.Child("orders").Child(order.UserId);
+            await orderRef.DeleteAsync();
+        }
 
+        public async Task DeleteReservationAsync(ReservationModel reservation)
+        {
+            var reservationRef = _firebaseClient.Child("reservations").Child(reservation.UserId);
+            await reservationRef.DeleteAsync();
+        }
 
 
 

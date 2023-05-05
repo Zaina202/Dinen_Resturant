@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Dinein_ResturantApp.Models;
+using Dinein_ResturantApp.Services;
+using Dinein_ResturantApp.ViewModels;
+using Firebase.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +16,13 @@ namespace Dinein_ResturantApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailPage : ContentPage
     {
-        public DetailPage()
+        public DetailPage(string userName, ReservationModel selectedItem)
         {
             InitializeComponent();
+            BindingContext = new DetailViewModel(selectedItem.UserId, userName);
+
         }
+
+
     }
 }
