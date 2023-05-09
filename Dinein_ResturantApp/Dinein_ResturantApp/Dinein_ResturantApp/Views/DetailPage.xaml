@@ -52,8 +52,7 @@
             </ListView>
 
             <Label Grid.Row="2" Text="{Binding OrderTotalPrice, StringFormat='Total: {0:C}'}" FontSize="Large" Margin="5,10,0,10" />
-            <Button Text="Delete Order" CornerRadius="20" Margin="10,10,0,0" WidthRequest="130"  Command="{Binding DeleteAndResrsh}"  />
-
+            <Button Text="Delete Order" CornerRadius="20" Margin="10,10,0,0" WidthRequest="130" Clicked="Delete_Order"  />
 
 
 
