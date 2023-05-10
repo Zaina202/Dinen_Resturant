@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dinein_ResturantApp.Views.OrdersPage"
-             xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels">
+             xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels" Shell.TabBarIsVisible="False" Shell.NavBarIsVisible="False">
     <ContentPage.BindingContext>
         <local:OrdersViewModel />
     </ContentPage.BindingContext>
@@ -34,7 +34,7 @@
                                                 <Label Text="{Binding TimePicker}" FontSize="Medium" TextColor="black" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0" HorizontalOptions="End">
-                                                <Image Source="People.png" Margin="0,0,5,0"/>
+                                                <Image Source="People.png" Margin="0,-5,5,0"/>
                                                 <Label Text="{Binding NumberOfPeople}" FontSize="Medium" TextColor="black"/>
                                             </StackLayout>
                                         </StackLayout>
