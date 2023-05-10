@@ -52,16 +52,12 @@ namespace Dinein_ResturantApp.ViewModels
                 }
             }
         }
-        //public Command<Order> DeleteOrderCommand { get; set; }
 
         public DetailViewModel(string userId, string userName)
         {
             _dataBase = new DataBase();
             UserName = userName;
-
             _ = LoadOrders(userId);
-
-
         }
         public DetailViewModel()
         {
@@ -115,29 +111,22 @@ namespace Dinein_ResturantApp.ViewModels
             OrderTotalPrice = totalPrice.ToString("c");
 
         }
-    
 
-        public Command<Order> DeleteOrderCommand
+
+        public async Task DeleteAndResrsh(string userId)
         {
-            get
-            {
-                return new Command<Order>(async (order) =>
-                {
-                    if (Orders.Contains(order))
-                    {
-                        await DeleteAndResrsh(order);
-                    }
-                });
-            }
+            await _dataBase.DeleteOrderAsync(userId);
+            await _dataBase.DeleteReservationAsync(userId);
+            await _dataBase.GetAllReservations();
+            _ = LoadOrders(userId);
         }
 
-        public async Task DeleteAndResrsh(Order order)
-        {
-            await _dataBase.DeleteOrderAsync(order);
-            Orders.Remove(order);
-            await LoadOrders(order.UserId);
-        }
 
+        public async void Refresh(string userId)
+        {
+            await LoadOrders(userId);
+            ReservationItems = await _dataBase.GetAllReservations();
+        }
 
 
         protected void OnPropertyChanged(string propertyName)

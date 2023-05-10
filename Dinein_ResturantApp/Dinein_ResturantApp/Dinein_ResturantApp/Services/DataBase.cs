@@ -12,6 +12,7 @@ namespace Dinein_ResturantApp.Services
     public class DataBase
     {
         private readonly string FirebaseClientUrl = "https://dine-in2-default-rtdb.firebaseio.com/";
+
         private readonly string FirebaseSecretKey = "1AO003FSpm2dGZn4321C88RKPu2T6DPnKLfBr1Dg";
 
         private FirebaseClient _firebaseClient;
@@ -70,16 +71,50 @@ namespace Dinein_ResturantApp.Services
             }
         }
 
-        public async Task DeleteOrderAsync(Order order)
+        public async Task DeleteOrderAsync(string userId)
         {
-            var orderRef = _firebaseClient.Child("orders").Child(order.UserId);
-            await orderRef.DeleteAsync();
-        }
+            bool response = await App.Current.MainPage.DisplayAlert("Alert", "Do you want to delete this order?", "Yes", "No");
 
-        public async Task DeleteReservationAsync(ReservationModel reservation)
+            if (response)
+            {
+                var toDeleteOrder = await _firebaseClient
+                          .Child("BillOrder")
+                          .OnceAsync<Order>();
+
+                foreach (var x in toDeleteOrder)
+                {
+                    if (x.Object.UserId == userId)
+                    {
+                        await _firebaseClient
+                            .Child("BillOrder")
+                            .Child(x.Key)
+                           .DeleteAsync();
+                    }
+                }
+                await App.Current.MainPage.DisplayAlert("Success", "Deletion Succeeded", "Ok");
+
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Failed", "Delete Failed", "Ok");
+            }
+        }
+        public async Task DeleteReservationAsync(string userId)
         {
-            var reservationRef = _firebaseClient.Child("reservations").Child(reservation.UserId);
-            await reservationRef.DeleteAsync();
+            var toDeleteRes = await _firebaseClient
+                      .Child("ReservationModel")
+                      .OnceAsync<Order>();
+
+            foreach (var x in toDeleteRes)
+            {
+                if (x.Object.UserId == userId)
+                {
+                    await _firebaseClient
+                        .Child("ReservationModel")
+                        .Child(x.Key)
+                       .DeleteAsync();
+                }
+            }
         }
 
 

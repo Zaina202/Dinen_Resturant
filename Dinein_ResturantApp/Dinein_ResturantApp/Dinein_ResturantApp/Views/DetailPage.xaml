@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dinein_ResturantApp.Views.DetailPage"
              xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels" Shell.TabBarIsVisible="False"  BackgroundColor="#FFD9A0">
-    <!--<ContentPage.BindingContext>
-        <local:DetailViewModel />
-    </ContentPage.BindingContext>-->
     <ContentPage.Content>
 
         <StackLayout Margin="20">
@@ -53,9 +50,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
             <StackLayout VerticalOptions="EndAndExpand">
             <Label Grid.Row="2" Text="{Binding OrderTotalPrice, StringFormat='Total: {0:N0}₪'}" FontSize="Large" Margin="5,10,0,10" />
-            <Button Text="Delete Order" CornerRadius="20"  WidthRequest="130" Margin="50,10,50,30" Command="{Binding DeleteAndResrsh}"  />
+            <Button Text="Delete Order" CornerRadius="20"  WidthRequest="130" Margin="50,10,50,30" Clicked="Delete_Order"  />
             </StackLayout>
 
 
