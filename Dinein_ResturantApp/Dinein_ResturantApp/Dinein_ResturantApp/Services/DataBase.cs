@@ -12,7 +12,8 @@ namespace Dinein_ResturantApp.Services
     public class DataBase
     {
         private readonly string FirebaseClientUrl = "https://dine-in2-default-rtdb.firebaseio.com/";
-        private readonly string FirebaseSecretKey = "pVOv2WoG1nNrDAZsbmzV8OPS51oPcgdntCXDqjHK";
+
+        private readonly string FirebaseSecretKey = "1AO003FSpm2dGZn4321C88RKPu2T6DPnKLfBr1Dg";
 
         private FirebaseClient _firebaseClient;
 
