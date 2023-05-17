@@ -7,8 +7,9 @@
         <local:OrdersViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-
-        <StackLayout>
+        <RefreshView x:Name="refreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout>
 
             <StackLayout>
                 <Label Text="Customer Orders" HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Margin="20"/>
@@ -48,5 +49,7 @@
             </ListView>
 
         </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>
