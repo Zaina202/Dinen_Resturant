@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dinein_ResturantApp.Views.DetailPage"
+             xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels" Shell.TabBarIsVisible="False"  BackgroundColor="#FFD9A0">
+    <ContentPage.Content>
+
+        <StackLayout Margin="20">
+            <Label Text="Customer namae :" TextColor="Gray" FontSize="20" />
+            
+            <StackLayout Orientation="Horizontal"  Margin="0,0,0,20">
+                <Image Source="Profile.png"/>
+                <Label Text="{Binding UserName}" FontSize="Large" TextColor="Black" FontAttributes="Bold" />
+            </StackLayout>
+
+            <Label Text="Order Items" TextColor="Black" FontSize="30" />
+            <ListView ItemsSource="{Binding OrderItems}" 
+          CachingStrategy="RecycleElement"
+          RowHeight="120"  SeparatorColor="Transparent" SeparatorVisibility="Default" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="10" BackgroundColor="{StaticResource Secondry}" Margin="5" Padding="3">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Margin="10,4,10,0">
+                                        <Label Text="{Binding MenuItemName}" FontAttributes="Bold" TextColor="Black" FontSize="Large" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="5,-8,0,0" HorizontalOptions="Center">
+                                        <Label Text="{Binding Quantity, StringFormat='Quantity: {0:N0}'}" FontSize="Medium" />
+                                        <Label Text="{Binding MenuItemPrice, StringFormat='Price: {0:0.00}₪'}" FontSize="Medium" Margin="10,0,0,0" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="5,10,0,0" HorizontalOptions="Center">
+
+                                        <Label Grid.Row="2" Text="{Binding TotalPrice, StringFormat='Total: {0:0.00}₪'}" FontSize="Medium" Margin="5,10,0,10" TextColor="Black"/>
+
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout VerticalOptions="EndAndExpand">
+            <Label Grid.Row="2" Text="{Binding OrderTotalPrice, StringFormat='Total: {0:0}₪'}" FontSize="Large" Margin="5,10,0,10" />
+            <Button Text="Delete Order" CornerRadius="20"  WidthRequest="130" Margin="50,10,50,30" Clicked="Delete_Order"  />
+            </StackLayout>
+
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

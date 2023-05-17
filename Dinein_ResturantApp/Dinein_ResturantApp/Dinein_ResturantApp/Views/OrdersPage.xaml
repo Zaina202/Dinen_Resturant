@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dinein_ResturantApp.Views.OrdersPage"
+             xmlns:local="clr-namespace:Dinein_ResturantApp.ViewModels" Shell.TabBarIsVisible="False" Shell.NavBarIsVisible="False"  BackgroundColor="#FFD9A0">
+    <ContentPage.BindingContext>
+        <local:OrdersViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView x:Name="refreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout>
+
+            <StackLayout>
+                <Label Text="Customer Orders" HorizontalOptions="CenterAndExpand" FontSize="Title" FontAttributes="Bold" Margin="20"/>
+            </StackLayout>
+            <ListView x:Name="ItemListView" 
+                      ItemsSource="{Binding ReservationItems}"
+                  CachingStrategy="RecycleElement"
+                      ItemTapped="OnItemTapped"
+                  RowHeight="130" SeparatorColor="Transparent" SeparatorVisibility="Default" Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <RelativeLayout>
+                                <Frame CornerRadius="10" BackgroundColor="LightGray" Margin="5" Padding="1" >
+                                    <StackLayout  Padding="15" BackgroundColor="{StaticResource Secondry}" Orientation="Horizontal" WidthRequest="370" >
+                                        <StackLayout HeightRequest="130" WidthRequest="220">
+                                            <StackLayout Orientation="Horizontal"  >
+                                                <Image Source="Profile.png"/>
+                                                <Label Text="{Binding UserName}" FontSize="Large" TextColor="black" FontAttributes="Bold" VerticalOptions="Center" />
+                                            </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="10,10,0,0">
+                                            <StackLayout Orientation="Horizontal" Margin="15,0,0,0" HorizontalOptions="End">
+                                                <Image Source="clock1" Margin="0,0,5,0"/>
+                                                <Label Text="{Binding TimePicker}" FontSize="Medium" TextColor="black" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0" HorizontalOptions="End">
+                                                <Image Source="People.png" Margin="0,-5,5,0"/>
+                                                <Label Text="{Binding NumberOfPeople}" FontSize="Medium" TextColor="black"/>
+                                            </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                    </StackLayout>
+                                </Frame>
+                            </RelativeLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
