@@ -108,7 +108,7 @@ namespace Dinein_ResturantApp.ViewModels
             }
 
 
-            OrderTotalPrice = totalPrice.ToString("c");
+            OrderTotalPrice = totalPrice.ToString("0.00");
 
         }
 
